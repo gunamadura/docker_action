@@ -11,9 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     os: [macos-latest, windows-latest]
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
 
     steps:
       - name: Checkout code
@@ -34,12 +34,17 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/arm64
+          platforms:  linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: gunamadura/myapp:latest
       - name: Verify Docker Image
         run: |
-          docker run --rm username/repository:latest uname -m
+          docker run --rm gunamadura/myapp:latest uname -m
       - name: check Docker Status
         run:
           docker info
+      - name: Pull Docker Image
+        run: docker pull gunamadura/myapp:latest
+      - name: List Images
+        run: docker images
+      
