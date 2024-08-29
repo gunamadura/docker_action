@@ -11,9 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     os: [macos-latest, windows-latest]
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
 
     steps:
       - name: Checkout code
@@ -39,7 +39,12 @@ jobs:
           tags: gunamadura/myapp:latest
       - name: Verify Docker Image
         run: |
-          docker run --rm username/repository:latest uname -m
+          docker run --rm gunamadura/repository:latest uname -m
       - name: check Docker Status
         run:
           docker info
+      - name: Pull Docker Image
+        run: docker pull gunamadura/myapp:latest
+      - name: List Images
+        run: docker images
+      
