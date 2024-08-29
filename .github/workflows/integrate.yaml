@@ -36,7 +36,7 @@ jobs:
           context: .
           platforms: linux/arm64
           push: true
-          tags: username/repository:latest
+          tags: gunamadura/myapp:latest
       - name: Verify Docker Image
         run: |
           docker run --rm username/repository:latest uname -m
