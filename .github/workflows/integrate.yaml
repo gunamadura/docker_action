@@ -39,7 +39,7 @@ jobs:
           tags: gunamadura/myapp:latest
       - name: Verify Docker Image
         run: |
-          docker run --rm gunamadura/repository:latest uname -m
+          docker run --rm gunamadura/myapp:latest uname -m
       - name: check Docker Status
         run:
           docker info
